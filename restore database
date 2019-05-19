@@ -1,0 +1,12 @@
+Example (typical for development on your laptop): put backup in default location (SQL Server 2014 shown)
+
+-- get the physical file paths for the files in the backup
+RESTORE FILELISTONLY 
+FROM DISK='C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\Backup\BimlMetadata_20170131.bak'
+
+-- perform restore and put files in a different location if necessary
+RESTORE DATABASE BimlMetadata 
+FROM DISK='C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\Backup\BimlMetadata_20170131.bak'
+WITH
+MOVE 'BimlMetadata' TO 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\Backup\BimlMetadata.mdf',
+MOVE 'BimlMetadata_log' TO 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\Backup\BimlMetadata_log.ldf'

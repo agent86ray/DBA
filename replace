@@ -1,0 +1,12 @@
+Example of replacing the SQL Server instance in a connection string column in a table. Run through SELECT; if results are correct then 
+COMMIT else ROLLBACK
+
+BEGIN TRAN
+
+UPDATE [BimlMetadata].[di].[Connections]
+SET [ConnectionString] = REPLACE ([ConnectionString], 'vmSql14\Demo', 'localhost')
+
+SELECT *
+FROM [BimlMetadata].[di].[Connections]
+
+COMMIT TRAN
